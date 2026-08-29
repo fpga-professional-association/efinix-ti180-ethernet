@@ -3,13 +3,13 @@
         "-o",
         "EfxSapphireSoc",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "soc",
             "name": "efx_soc",
-            "version": "3.4.1"
+            "version": "3.2.1"
         }
     ],
     "conf": {
@@ -24,7 +24,6 @@
         "IDE_SEL": "1'b0",
         "RISCV_DEBUG_PRIV": "1'b1",
         "HARD_BREAKPOINT": "0",
-        "CO_DEBUG": "1'b0",
         "SOFT_TAP": "1'b0",
         "TAP_MODE": "1'b0",
         "TAP_COUNT": "1",
@@ -64,10 +63,10 @@
         "FPEXT": "1'b1",
         "FPU": "1'b1",
         "LINUX": "1'b1",
-        "ICACHEWAY": "1",
+        "ICACHEWAY": "8",
         "DCACHEWAY": "8",
         "CpuCount": "2",
-        "ICacheSize": "4096",
+        "ICacheSize": "32768",
         "DCacheSize": "32768",
         "Cache": "1'b1",
         "ICache_EN": "1'b1",
@@ -168,18 +167,61 @@
     },
     "output": {
         "external_script_generator": [],
-        "external_source_source": [],
+        "external_source_source": [
+            "EfxSapphireSoc\\EfxSapphireSoc_tmpl.v",
+            "EfxSapphireSoc\\EfxSapphireSoc_tmpl.vhd",
+            "EfxSapphireSoc\\EfxSapphireSoc.v",
+            "EfxSapphireSoc\\EfxSapphireSoc_define.vh"
+        ],
         "external_script_script": [],
         "external_script_embedded_sw": [],
-        "external_example_design": [],
-        "external_example_design_ti": [],
-        "external_testbench_testbench": [],
-        "external_testbench_modelsim": [],
-        "external_testbench_aldec": [],
-        "external_testbench_ncsim": [],
-        "external_testbench_synopsys": []
+        "external_example_design": [
+            "EfxSapphireSoc\\T120F324_devkit\\soc.xml",
+            "EfxSapphireSoc\\T120F324_devkit\\design_modules.v",
+            "EfxSapphireSoc\\T120F324_devkit\\ddr_reset_sequencer.v",
+            "EfxSapphireSoc\\T120F324_devkit\\soc.hex",
+            "EfxSapphireSoc\\T120F324_devkit\\EfxSapphireSoc.v",
+            "EfxSapphireSoc\\T120F324_devkit\\EfxSapphireSoc_define.vh"
+        ],
+        "external_example_design_ti": [
+            "EfxSapphireSoc\\Ti60F225_devkit\\soc.xml",
+            "EfxSapphireSoc\\Ti60F225_devkit\\design_modules.v",
+            "EfxSapphireSoc\\Ti60F225_devkit\\hbram_top.v",
+            "EfxSapphireSoc\\Ti60F225_devkit\\hbram_top_define.vh",
+            "EfxSapphireSoc\\Ti60F225_devkit\\soc.hex",
+            "EfxSapphireSoc\\Ti60F225_devkit\\EfxSapphireSoc.v",
+            "EfxSapphireSoc\\Ti60F225_devkit\\EfxSapphireSoc_define.vh"
+        ],
+        "external_testbench_testbench": [
+            "EfxSapphireSoc\\Testbench\\MEM_IM.TXT",
+            "EfxSapphireSoc\\Testbench\\SECSI.TXT",
+            "EfxSapphireSoc\\Testbench\\SFDP.TXT",
+            "EfxSapphireSoc\\Testbench\\SREG.TXT",
+            "EfxSapphireSoc\\Testbench\\README",
+            "EfxSapphireSoc\\Testbench\\tb_soc.do",
+            "EfxSapphireSoc\\Testbench\\modelsim.do",
+            "EfxSapphireSoc\\Testbench\\wave.do",
+            "EfxSapphireSoc\\Testbench\\aldec.do",
+            "EfxSapphireSoc\\Testbench\\design_modules.v",
+            "EfxSapphireSoc\\Testbench\\sim_modules.v",
+            "EfxSapphireSoc\\Testbench\\W25Q32JVxxIM.v",
+            "EfxSapphireSoc\\Testbench\\EfxSapphireSoc.v",
+            "EfxSapphireSoc\\Testbench\\EfxSapphireSoc_define.vh"
+        ],
+        "external_testbench_modelsim": [
+            "EfxSapphireSoc\\Testbench\\modelsim\\EfxSapphireSoc.v"
+        ],
+        "external_testbench_aldec": [
+            "EfxSapphireSoc\\Testbench\\aldec\\EfxSapphireSoc.v"
+        ],
+        "external_testbench_ncsim": [
+            "EfxSapphireSoc\\Testbench\\ncsim\\EfxSapphireSoc.v"
+        ],
+        "external_testbench_synopsys": [
+            "EfxSapphireSoc\\Testbench\\synopsys\\EfxSapphireSoc.v"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:23:10.305135+00:00"
 }

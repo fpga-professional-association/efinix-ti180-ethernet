@@ -3,13 +3,13 @@
         "-o",
         "csi2_hard_mipi_rx",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "mipi",
             "name": "efx_csi2_rx_top",
-            "version": "5.16"
+            "version": "5.12"
         }
     ],
     "conf": {
@@ -25,19 +25,47 @@
         "Pack_64": "1",
         "FRAME_MODE": "\"GENERIC\"",
         "ENABLE_VCX": "0",
-        "MIPI_CSI2_RX_DEBUG": "1'b0",
-        "MIPI_CSI2_RX_PIXEL_SIDEBAND": "1'b0"
+        "MIPI_CSI2_RX_DEBUG": "1'b0"
     },
     "output": {
-        "external_source_source": [],
-        "external_example_example": [],
-        "external_testbench_testbench": [],
-        "external_testbench_modelsim": [],
-        "external_testbench_ncsim": [],
-        "external_testbench_aldec": [],
-        "external_testbench_synopsys": []
+        "external_source_source": [
+            "csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.vhd",
+            "csi2_hard_mipi_rx\\csi2_hard_mipi_rx_tmpl.sv",
+            "csi2_hard_mipi_rx\\csi2_hard_mipi_rx.sv",
+            "csi2_hard_mipi_rx\\csi2_hard_mipi_rx_define.svh"
+        ],
+        "external_example_example": [
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\Ti180_mipi.peri.xml",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\Ti180_mipi.xml",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\csichk.v",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\efx_csi2_rx_top.sv",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\efx_csi2_tx_top.sv",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\reset_ctrl.v",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\Ti180_mipi.sdc",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\top_2_5g.sv",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\vga_chk.v",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\vga_gen.v",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\csi2_hard_mipi_rx.sv",
+            "csi2_hard_mipi_rx\\Ti180J484_devkit\\csi2_hard_mipi_rx_define.svh"
+        ],
+        "external_testbench_testbench": [
+            "csi2_hard_mipi_rx\\Testbench\\csi2_hard_mipi_rx.sv",
+            "csi2_hard_mipi_rx\\Testbench\\csi2_hard_mipi_rx_define.svh"
+        ],
+        "external_testbench_modelsim": [
+            "csi2_hard_mipi_rx\\Testbench\\modelsim\\csi2_hard_mipi_rx.sv"
+        ],
+        "external_testbench_ncsim": [
+            "csi2_hard_mipi_rx\\Testbench\\ncsim\\csi2_hard_mipi_rx.sv"
+        ],
+        "external_testbench_aldec": [
+            "csi2_hard_mipi_rx\\Testbench\\aldec\\csi2_hard_mipi_rx.sv"
+        ],
+        "external_testbench_synopsys": [
+            "csi2_hard_mipi_rx\\Testbench\\synopsys\\csi2_hard_mipi_rx.sv"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:20:49.113542+00:00"
 }

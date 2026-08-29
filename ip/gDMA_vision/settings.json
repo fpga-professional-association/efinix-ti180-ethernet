@@ -3,13 +3,13 @@
         "-o",
         "gDMA_vision",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "bridges_and_adaptors",
             "name": "efx_dma",
-            "version": "6.4.2"
+            "version": "6.4.1"
         }
     ],
     "conf": {
@@ -112,12 +112,32 @@
     },
     "output": {
         "external_script_generator": [],
-        "external_source_source": [],
+        "external_source_source": [
+            "gDMA_vision\\gDMA_vision_tmpl.v",
+            "gDMA_vision\\gDMA_vision_tmpl.vhd",
+            "gDMA_vision\\gDMA_vision.v",
+            "gDMA_vision\\gDMA_vision_define.vh"
+        ],
         "external_script_script": [],
-        "external_testbench_testbench": [],
-        "external_example_T120F576_devkit": []
+        "external_testbench_testbench": [
+            "gDMA_vision\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+            "gDMA_vision\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+            "gDMA_vision\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+            "gDMA_vision\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+            "gDMA_vision\\Testbench\\MEM.TXT",
+            "gDMA_vision\\Testbench\\modelsim.do",
+            "gDMA_vision\\Testbench\\prj.f",
+            "gDMA_vision\\Testbench\\sim_modules.v",
+            "gDMA_vision\\Testbench\\tb_soc.v",
+            "gDMA_vision\\Testbench\\gDMA_vision.v",
+            "gDMA_vision\\Testbench\\gDMA_vision_define.vh"
+        ],
+        "external_example_T120F576_devkit": [
+            "gDMA_vision\\gDMA_vision.v",
+            "gDMA_vision\\gDMA_vision_define.vh"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:25:19.991269+00:00"
 }

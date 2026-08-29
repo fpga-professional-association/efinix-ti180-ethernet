@@ -3,13 +3,13 @@
         "-o",
         "gDMA",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "bridges_and_adaptors",
             "name": "efx_dma",
-            "version": "6.4.2"
+            "version": "6.4.1"
         }
     ],
     "conf": {
@@ -112,12 +112,32 @@
     },
     "output": {
         "external_script_generator": [],
-        "external_source_source": [],
+        "external_source_source": [
+            "gDMA\\gDMA_tmpl.v",
+            "gDMA\\gDMA_tmpl.vhd",
+            "gDMA\\gDMA.v",
+            "gDMA\\gDMA_define.vh"
+        ],
         "external_script_script": [],
-        "external_testbench_testbench": [],
-        "external_example_T120F576_devkit": []
+        "external_testbench_testbench": [
+            "gDMA\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol0.bin",
+            "gDMA\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol1.bin",
+            "gDMA\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol2.bin",
+            "gDMA\\Testbench\\EfxSapphireSoc.v_toplevel_system_ramA_logic_ram_symbol3.bin",
+            "gDMA\\Testbench\\MEM.TXT",
+            "gDMA\\Testbench\\modelsim.do",
+            "gDMA\\Testbench\\prj.f",
+            "gDMA\\Testbench\\sim_modules.v",
+            "gDMA\\Testbench\\tb_soc.v",
+            "gDMA\\Testbench\\gDMA.v",
+            "gDMA\\Testbench\\gDMA_define.vh"
+        ],
+        "external_example_T120F576_devkit": [
+            "gDMA\\gDMA.v",
+            "gDMA\\gDMA_define.vh"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:24:29.791042+00:00"
 }

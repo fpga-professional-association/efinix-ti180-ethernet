@@ -3,13 +3,13 @@
         "-o",
         "gTSE",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "ethernet",
             "name": "efx_tsemac",
-            "version": "7.3"
+            "version": "6.4"
         }
     ],
     "conf": {
@@ -21,28 +21,81 @@
         "PHY_INTF_MODE": "0",
         "AXIS_DW": "8",
         "RGMII_RXC_EDGE": "1'b1",
-        "RGMII_TXC_DLY": "1'b1",
-        "INTER_PACKET_GAP": "6'd12",
-        "MTU_FRAME_LENGTH": "16'd1518",
-        "MAC_SOURCE_ADDRESS": "48'd0",
-        "ENABLE_BROADCAST_FILTERING": "1'b1",
-        "LOOPBACK_EN": "1'b0",
-        "APBIF": "1'b0",
-        "ONCHIP_PHY": "1'b0"
+        "RGMII_TXC_DLY": "1'b1"
     },
     "output": {
-        "external_testbench_modelsim": [],
-        "external_source_source": [],
-        "external_testbench_testbench": [],
-        "external_testbench_ncsim": [],
-        "external_testbench_synopsys": [],
-        "external_testbench_aldec": [],
-        "external_example_example": [],
-        "external_example_2": [],
-        "external_example_example_serdes": [],
-        "external_example_example_serdes_2p5g": []
+        "external_testbench_modelsim": [
+            "gTSE\\Testbench\\modelsim\\gTSE.sv"
+        ],
+        "external_source_source": [
+            "gTSE\\gTSE_tmpl.vhd",
+            "gTSE\\gTSE_tmpl.sv",
+            "gTSE\\gTSE.sv",
+            "gTSE\\gTSE_define.svh"
+        ],
+        "external_testbench_testbench": [
+            "gTSE\\Testbench\\tb_header.v",
+            "gTSE\\Testbench\\tb_top.v",
+            "gTSE\\Testbench\\ODDR.v",
+            "gTSE\\Testbench\\glbl.v",
+            "gTSE\\Testbench\\apb3_2_axi4_lite.v",
+            "gTSE\\Testbench\\axi4_st_mux.v",
+            "gTSE\\Testbench\\mac_pat_gen.v",
+            "gTSE\\Testbench\\mac_rx2tx.v",
+            "gTSE\\Testbench\\reg_apb3.v",
+            "gTSE\\Testbench\\rgmii_2_rmii.v",
+            "gTSE\\Testbench\\udp_pat_gen.v",
+            "gTSE\\Testbench\\DaulClkFifo.v",
+            "gTSE\\Testbench\\temac_ex.v",
+            "gTSE\\Testbench\\modelsim.do",
+            "gTSE\\Testbench\\gTSE.sv",
+            "gTSE\\Testbench\\gTSE_define.svh"
+        ],
+        "external_testbench_ncsim": [
+            "gTSE\\Testbench\\ncsim\\gTSE.sv"
+        ],
+        "external_testbench_synopsys": [
+            "gTSE\\Testbench\\synopsys\\gTSE.sv"
+        ],
+        "external_testbench_aldec": [
+            "gTSE\\Testbench\\aldec\\gTSE.sv"
+        ],
+        "external_example_example": [
+            "gTSE\\T120F324_devkit\\temac_ex.peri.xml",
+            "gTSE\\T120F324_devkit\\temac_ex.xml",
+            "gTSE\\T120F324_devkit\\timing.sdc",
+            "gTSE\\T120F324_devkit\\apb3_2_axi4_lite.v",
+            "gTSE\\T120F324_devkit\\axi4_st_mux.v",
+            "gTSE\\T120F324_devkit\\header.v",
+            "gTSE\\T120F324_devkit\\mac_pat_gen.v",
+            "gTSE\\T120F324_devkit\\mac_rx2tx.v",
+            "gTSE\\T120F324_devkit\\reg_apb3.v",
+            "gTSE\\T120F324_devkit\\rgmii_2_rmii.v",
+            "gTSE\\T120F324_devkit\\temac_ex.v",
+            "gTSE\\T120F324_devkit\\udp_pat_gen.v",
+            "gTSE\\T120F324_devkit\\DaulClkFifo.v",
+            "gTSE\\T120F324_devkit\\gTSE.sv",
+            "gTSE\\T120F324_devkit\\gTSE_define.svh"
+        ],
+        "external_example_2": [
+            "gTSE\\Ti60F225_devkit\\temac_ex.peri.xml",
+            "gTSE\\Ti60F225_devkit\\temac_ex.xml",
+            "gTSE\\Ti60F225_devkit\\timing_Ti60.sdc",
+            "gTSE\\Ti60F225_devkit\\apb3_2_axi4_lite.v",
+            "gTSE\\Ti60F225_devkit\\axi4_st_mux.v",
+            "gTSE\\Ti60F225_devkit\\header.v",
+            "gTSE\\Ti60F225_devkit\\mac_pat_gen.v",
+            "gTSE\\Ti60F225_devkit\\mac_rx2tx.v",
+            "gTSE\\Ti60F225_devkit\\reg_apb3.v",
+            "gTSE\\Ti60F225_devkit\\rgmii_2_rmii.v",
+            "gTSE\\Ti60F225_devkit\\temac_ex.v",
+            "gTSE\\Ti60F225_devkit\\udp_pat_gen.v",
+            "gTSE\\Ti60F225_devkit\\DaulClkFifo.v",
+            "gTSE\\Ti60F225_devkit\\gTSE.sv",
+            "gTSE\\Ti60F225_devkit\\gTSE_define.svh"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:25:30.635595+00:00"
 }

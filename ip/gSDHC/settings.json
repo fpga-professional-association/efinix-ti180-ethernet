@@ -3,13 +3,13 @@
         "-o",
         "gSDHC",
         "--base_path",
-        "ip",
+        "D:\\efinix\\ethernet\\ip",
         "--vlnv",
         {
             "vendor": "efinixinc.com",
             "library": "memory_controller",
             "name": "efx_sd_host_controller",
-            "version": "6.0"
+            "version": "5.3.1"
         }
     ],
     "conf": {
@@ -18,14 +18,37 @@
     },
     "output": {
         "external_script_reference_design": [],
-        "external_source_source": [],
-        "external_testbench_modelsim": [],
-        "external_testbench_testbench": [],
-        "external_testbench_ncsim": [],
-        "external_testbench_aldec": [],
-        "external_testbench_synopsys": []
+        "external_source_source": [
+            "gSDHC\\gSDHC_tmpl.v",
+            "gSDHC\\gSDHC_tmpl.vhd",
+            "gSDHC\\gSDHC.v",
+            "gSDHC\\gSDHC_define.vh"
+        ],
+        "external_testbench_modelsim": [
+            "gSDHC\\Testbench\\modelsim\\gSDHC.v"
+        ],
+        "external_testbench_testbench": [
+            "gSDHC\\Testbench\\tb_top.v",
+            "gSDHC\\Testbench\\top.v",
+            "gSDHC\\Testbench\\sdModel.v",
+            "gSDHC\\Testbench\\axi_ram.v",
+            "gSDHC\\Testbench\\axi_interconnect.v",
+            "gSDHC\\Testbench\\apb3_2_axi4_lite.v",
+            "gSDHC\\Testbench\\modelsim.do",
+            "gSDHC\\Testbench\\gSDHC.v",
+            "gSDHC\\Testbench\\gSDHC_define.vh"
+        ],
+        "external_testbench_ncsim": [
+            "gSDHC\\Testbench\\ncsim\\gSDHC.v"
+        ],
+        "external_testbench_aldec": [
+            "gSDHC\\Testbench\\aldec\\gSDHC.v"
+        ],
+        "external_testbench_synopsys": [
+            "gSDHC\\Testbench\\synopsys\\gSDHC.v"
+        ]
     },
     "ooc_synthesis": {},
-    "sw_version": "2026.1.132.3.9",
-    "external_path_option": "RELATIVE_PATH"
+    "sw_version": "2025.1.110",
+    "generated_date": "2026-08-29T19:25:25.683771+00:00"
 }

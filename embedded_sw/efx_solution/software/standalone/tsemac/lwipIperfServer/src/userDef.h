@@ -8,7 +8,7 @@
 
 #define configIP_ADDR0		192
 #define configIP_ADDR1		168
-#define configIP_ADDR2		31
+#define configIP_ADDR2		1
 #define configIP_ADDR3		55
 
 #define configMAC_ADDR0	 	0x00

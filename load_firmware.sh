@@ -24,5 +24,5 @@ echo "Entry : $ENTRY"
 # standard riscv target, but keeps the cfg quiet).
 cd "$APP_DIR"
 
-"$EFINITY/debugger/openocd/bin/openocd.exe"     -f "$OPENOCD_CFG_DIR/ftdi_ti.cfg"     -f "$OPENOCD_CFG_DIR/debug_ti.cfg"     -c "init"     -c "targets fpga_spinal.cpu1"     -c "halt"     -c "targets fpga_spinal.cpu0"     -c "halt"     -c "load_image $ELF_WIN"     -c "targets fpga_spinal.cpu1"     -c "resume $ENTRY"     -c "targets fpga_spinal.cpu0"     -c "resume $ENTRY"     -c "shutdown"
+"$EFINITY/debugger/openocd/bin/openocd.exe"     -f "$OPENOCD_CFG_DIR/ftdi_ti.cfg"     -f "$OPENOCD_CFG_DIR/debug_ti.cfg"     -c "init"     -c "reset halt"     -c "targets fpga_spinal.cpu0"     -c "load_image $ELF_WIN"     -c "targets fpga_spinal.cpu1"     -c "reg pc $ENTRY"     -c "resume"     -c "targets fpga_spinal.cpu0"     -c "reg pc $ENTRY"     -c "resume"     -c "shutdown"
 echo "firmware loaded and running"

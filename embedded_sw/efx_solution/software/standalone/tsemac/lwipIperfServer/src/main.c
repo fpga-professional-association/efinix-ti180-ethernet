@@ -241,19 +241,27 @@ void main() {
 	bsp_printf("Info: DHCP discover on link ...\n\r");
 	{
 		u64 t_start = clint_getTime(BSP_CLINT);
+		int retries = 0;
 		while (!dhcp_supplied_address(&gnetif)) {
 			if (check_dma_status(cur_des))
 				ethernetif_input(&gnetif);
 			sys_check_timeouts();
 			if (((clint_getTime(BSP_CLINT) - t_start) / BSP_CLINT_HZ) > 30) {
-				bsp_printf("Warn: DHCP timeout after 30 s, retrying\n\r");
+				bsp_printf("Warn: DHCP timeout after 30 s\n\r");
 				t_start = clint_getTime(BSP_CLINT);
+				if (++retries >= 2) {
+					bsp_printf("Warn: DHCP failed, falling back to static\n\r");
+					dhcp_stop(&gnetif);
+					netif_set_addr(&gnetif, &ipaddr, &netmask, &gw);
+					break;
+				}
 			}
 		}
 	}
-	bsp_printf("Info: DHCP bound\n\r");
-	bsp_printf("DHCP_IP: %s\n\r", ip4addr_ntoa(netif_ip4_addr(&gnetif)));
-	bsp_printf("DHCP_GW: %s\n\r", ip4addr_ntoa(netif_ip4_gw(&gnetif)));
+	if (dhcp_supplied_address(&gnetif))
+		bsp_printf("Info: DHCP bound\n\r");
+	bsp_printf("BOARD_IP: %s\n\r", ip4addr_ntoa(netif_ip4_addr(&gnetif)));
+	bsp_printf("BOARD_GW: %s\n\r", ip4addr_ntoa(netif_ip4_gw(&gnetif)));
 
 	lwiperf_start_tcp_server( IP_ADDR_ANY, 5001, NULL, NULL );
 
