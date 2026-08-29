@@ -239,6 +239,19 @@ CHECKSUM_GEN_UDP=1 (also fixes DHCP - routers may drop checksum-0 DISCOVERs).
 **Timing caveat:** at 250 MHz this design's io_systemClk closes to Fmax
 ~235 MHz (-0.25 ns setup, seed 3 / effort 2; a seed-7 / effort-3 run was
 worse at 227). The shipped configuration is therefore a mild overclock that
-runs clean on the bench at room temperature. For guaranteed-by-STA operation,
-set the io_systemClk out_divider back to 5 (200 MHz) in the peri.xml - the
-lwIP tuning alone is still worth ~10-15%.
+runs clean on the bench at room temperature (verified: 8 consecutive 4 s
+transfers plus a 20 s sustained run at ~355 Mbit/s, zero TCP aborts). For
+guaranteed-by-STA operation, set the io_systemClk out_divider back to 5
+(200 MHz) in the peri.xml - the lwIP tuning alone is still worth ~10-15%.
+
+**Why not faster?** The link is 1000BASE-T full duplex (RTL8211FD-CG PHY on
+the daughter card, rated 10/100/1000), so the wire ceiling is ~941 Mbit/s TCP
+goodput. The gap is CPU-bound, not cache- or DMA-bound: at ~355 Mbit/s the
+board processes ~30k frames/s, i.e. the entire per-frame budget of the
+250 MHz RISC-V is ~8,000 cycles for interrupt entry, cache maintenance,
+lwIP tcp_input, and ACK generation. An experimental firmware that batched
+RX processing and replaced the per-frame `data_cache_invalidate_all()` with
+one flush per burst measured *no* throughput gain (and was less stable), so
+cache maintenance is not the bottleneck - the plateau is lwIP protocol
+processing itself. Meaningful further gains would need TCP offload in
+fabric or a hard-wired checksum/segmentation path, not firmware tuning.
