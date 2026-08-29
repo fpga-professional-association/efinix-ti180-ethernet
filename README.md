@@ -228,3 +228,17 @@ Note: Please refer [List of supported app](docs/app/ug_supported_app.md) for dif
 - [Sapphire RISC-V SoC Hardware and Software User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=SAPPHIREUG)
 - [Titanium Ti180 J484 Development Kit User Guide](https://www.efinixinc.com/support/docsdl.php?s=ef&pn=Ti180J484-DK-UG)
 
+
+## Performance profile (this fork)
+
+Measured on hardware (PC -> FPGA sustained TCP, gigabit LAN): **367 Mbit/s**
+(vendor baseline 260 at 200 MHz; Efinix's published figure 298). Changes:
+SoC 250 MHz (PLL div 5->4), lwIP PBUF_POOL_BUFSIZE 1536, MEM_SIZE 64K,
+CHECKSUM_GEN_UDP=1 (also fixes DHCP - routers may drop checksum-0 DISCOVERs).
+
+**Timing caveat:** at 250 MHz this design's io_systemClk closes to Fmax
+~235 MHz (-0.25 ns setup, seed 3 / effort 2; a seed-7 / effort-3 run was
+worse at 227). The shipped configuration is therefore a mild overclock that
+runs clean on the bench at room temperature. For guaranteed-by-STA operation,
+set the io_systemClk out_divider back to 5 (200 MHz) in the peri.xml - the
+lwIP tuning alone is still worth ~10-15%.
