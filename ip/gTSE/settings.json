@@ -1,0 +1,48 @@
+{
+    "args": [
+        "-o",
+        "gTSE",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "ethernet",
+            "name": "efx_tsemac",
+            "version": "7.3"
+        }
+    ],
+    "conf": {
+        "VERSION": "16",
+        "TXFIFO_EN": "1'b1",
+        "RXFIFO_EN": "1'b1",
+        "TXFIFO_DTH": "4096",
+        "RXFIFO_DTH": "4096",
+        "PHY_INTF_MODE": "0",
+        "AXIS_DW": "8",
+        "RGMII_RXC_EDGE": "1'b1",
+        "RGMII_TXC_DLY": "1'b1",
+        "INTER_PACKET_GAP": "6'd12",
+        "MTU_FRAME_LENGTH": "16'd1518",
+        "MAC_SOURCE_ADDRESS": "48'd0",
+        "ENABLE_BROADCAST_FILTERING": "1'b1",
+        "LOOPBACK_EN": "1'b0",
+        "APBIF": "1'b0",
+        "ONCHIP_PHY": "1'b0"
+    },
+    "output": {
+        "external_testbench_modelsim": [],
+        "external_source_source": [],
+        "external_testbench_testbench": [],
+        "external_testbench_ncsim": [],
+        "external_testbench_synopsys": [],
+        "external_testbench_aldec": [],
+        "external_example_example": [],
+        "external_example_2": [],
+        "external_example_example_serdes": [],
+        "external_example_example_serdes_2p5g": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132.3.9",
+    "external_path_option": "RELATIVE_PATH"
+}

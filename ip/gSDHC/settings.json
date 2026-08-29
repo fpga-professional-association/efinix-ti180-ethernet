@@ -1,0 +1,31 @@
+{
+    "args": [
+        "-o",
+        "gSDHC",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "memory_controller",
+            "name": "efx_sd_host_controller",
+            "version": "6.0"
+        }
+    ],
+    "conf": {
+        "DATA_BUFFER_DEPTH": "512",
+        "ADMA_DATA_WIDTH": "32"
+    },
+    "output": {
+        "external_script_reference_design": [],
+        "external_source_source": [],
+        "external_testbench_modelsim": [],
+        "external_testbench_testbench": [],
+        "external_testbench_ncsim": [],
+        "external_testbench_aldec": [],
+        "external_testbench_synopsys": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132.3.9",
+    "external_path_option": "RELATIVE_PATH"
+}

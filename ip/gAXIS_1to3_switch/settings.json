@@ -1,0 +1,54 @@
+{
+    "args": [
+        "-o",
+        "gAXIS_1to3_switch",
+        "--base_path",
+        "ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "axi_infra",
+            "name": "efx_axi_interconnect",
+            "version": "5.7"
+        }
+    ],
+    "conf": {
+        "ARB_MODE": "\"ROUND_ROBIN_1\"",
+        "S_PORTS": "1",
+        "TABLE0_AXI_S0__MIN": "32'd0",
+        "TABLE0_AXI_S1__MIN": "32'd8388608",
+        "TABLE0_AXI_S2__MIN": "32'd8454144",
+        "TABLE0_AXI_S3__MIN": "32'd286261248",
+        "TABLE0_AXI_S4__MIN": "32'd536870912",
+        "TABLE0_AXI_S5__MIN": "32'd805306368",
+        "TABLE0_AXI_S6__MIN": "32'd1073741824",
+        "TABLE0_AXI_S7__MIN": "32'd1090519040",
+        "TABLE0_AXI_S0__MAX": "32'd23",
+        "TABLE0_AXI_S1__MAX": "32'd16",
+        "TABLE0_AXI_S2__MAX": "32'd16",
+        "TABLE0_AXI_S3__MAX": "32'd20",
+        "TABLE0_AXI_S4__MAX": "32'd28",
+        "TABLE0_AXI_S5__MAX": "32'd28",
+        "TABLE0_AXI_S6__MAX": "32'd24",
+        "TABLE0_AXI_S7__MAX": "32'd20",
+        "DATA_WIDTH": "32",
+        "ADDR_WIDTH": "32",
+        "M_PORTS": "3",
+        "ID_WIDTH": "8",
+        "USER_WIDTH": "3",
+        "PROTOCOL": "\"AXI4\""
+    },
+    "output": {
+        "external_script_generator": [],
+        "external_source_source": [],
+        "external_example_example": [],
+        "external_testbench_synopsys": [],
+        "external_testbench_modelsim": [],
+        "external_testbench_ncsim": [],
+        "external_testbench_aldec": [],
+        "external_testbench_testbench": []
+    },
+    "ooc_synthesis": {},
+    "sw_version": "2026.1.132.3.9",
+    "external_path_option": "RELATIVE_PATH"
+}

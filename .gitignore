@@ -1,0 +1,19 @@
+# Efinity build products
+outflow/
+work_syn/
+work_pnr/
+work_pt/
+*.log
+# IP generation outputs (regenerate with gen_ips.bat; settings.json is the source)
+ip/*/*.v
+ip/*/*.sv
+ip/*/*.vh
+ip/*/*.svh
+ip/*/*.bin
+ip/*/ipm/
+ip/*/source/
+!ip/*/settings.json
+# firmware build products
+embedded_sw/*/software/standalone/*/*/build/
+embedded_sw/EfxSapphireSoc/
+.aside/
