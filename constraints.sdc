@@ -13,7 +13,7 @@
 #################
 ### Clock for Soc
 create_clock -period 5.0000 io_peripheralClk
-create_clock -period 5.0000 io_systemClk
+create_clock -period 4.0000 io_systemClk
 create_clock -period 8.0000 io_memoryClk
 create_clock -period 7.5008 ddr_pll_CLKOUT0
 create_clock -period 100.00 jtag_inst1_TCK

@@ -359,7 +359,7 @@
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="io_peripheralClk" number="0" out_divider="10" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
-            <efxpt:comp_output_clock name="io_systemClk" number="1" out_divider="5" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
+            <efxpt:comp_output_clock name="io_systemClk" number="1" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
             <efxpt:comp_output_clock name="io_memoryClk" number="2" out_divider="8" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
             <efxpt:comp_output_clock name="io_tseClk" number="3" out_divider="8" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
             <efxpt:comp_output_clock name="io_tseClk_90" number="4" out_divider="8" is_dyn_phase="false" phase_setting="4" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
@@ -374,7 +374,7 @@
                 <efxpt:pin name="" type_name="DESKEWED" is_bus="false"/>
             </efxpt:gen_pin>
             <efxpt:comp_output_clock name="ddr_pll_CLKOUT0" number="0" out_divider="28" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
-            <efxpt:comp_output_clock name="ddr_pll_CLKOUT4" number="4" out_divider="5" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
+            <efxpt:comp_output_clock name="ddr_pll_CLKOUT4" number="4" out_divider="4" is_dyn_phase="false" phase_setting="0" is_inverted="false" conn_type="gclk" clkmux_buf_name=""/>
             <efxpt:comp_prop/>
         </efxpt:pll>
         <efxpt:pll name="tse_pll_clk" pll_def="PLL_TR0" ref_clock_name="" ref_clock_freq="125.0000" multiplier="1" pre_divider="1" post_divider="4" reset_name="tse_pll_rstn" locked_name="tse_pll_locked" is_ipfrz="false" is_bypass_lock="true">

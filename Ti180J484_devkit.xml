@@ -1,4 +1,4 @@
-<efx:project xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Ti180J484_devkit" description="" last_change="1788032776" sw_version="2025.1.110" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Ti180J484_devkit" description="" last_change="1788035615" sw_version="2025.1.110" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium" />
         <efx:device name="Ti180J484" />
@@ -103,8 +103,8 @@
         <efx:param name="verbose" value="off" value_type="e_bool" />
         <efx:param name="load_delaym" value="on" value_type="e_bool" />
         <efx:param name="optimization_level" value="TIMING_3" value_type="e_option" />
-        <efx:param name="seed" value="3" value_type="e_integer" />
-        <efx:param name="placer_effort_level" value="2" value_type="e_option" />
+        <efx:param name="seed" value="7" value_type="e_integer" />
+        <efx:param name="placer_effort_level" value="3" value_type="e_option" />
         <efx:param name="max_threads" value="-1" value_type="e_integer" />
         <efx:param name="print_critical_path" value="10" value_type="e_integer" />
         <efx:param name="beneficial_skew" value="on" value_type="e_option" />

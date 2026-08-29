@@ -118,7 +118,7 @@
 
 /* MEM_SIZE: the size of the heap memory. If the application will send
 a lot of data that needs to be copied, this should be set high. */
-#define MEM_SIZE               10240
+#define MEM_SIZE               65536
 
 /* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application
    sends a lot of data out of ROM (or other static memory), this
@@ -158,10 +158,10 @@ a lot of data that needs to be copied, this should be set high. */
 
 /* ---------- Pbuf options ---------- */
 /* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */
-#define PBUF_POOL_SIZE          400
+#define PBUF_POOL_SIZE          128
 
 /* PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool. */
-#define PBUF_POOL_BUFSIZE       256
+#define PBUF_POOL_BUFSIZE       1536
 
 /** SYS_LIGHTWEIGHT_PROT
  * define SYS_LIGHTWEIGHT_PROT in lwipopts.h if you want inter-task protection
@@ -327,7 +327,7 @@ void sys_check_core_locking(void);
 
 #define LWIP_CHECKSUM_CTRL_PER_NETIF    0
 #define CHECKSUM_GEN_IP                 1
-#define CHECKSUM_GEN_UDP                0
+#define CHECKSUM_GEN_UDP                1
 #define CHECKSUM_GEN_TCP                0
 #define CHECKSUM_GEN_ICMP               1
 #define CHECKSUM_GEN_ICMP6              0
