@@ -1,4 +1,4 @@
-<efx:project xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Ti180J484_devkit" description="" last_change="1788037015" sw_version="2025.1.110" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Ti180J484_devkit" description="" last_change="1788047874" sw_version="2025.1.110" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="sync" design_ood="sync" place_ood="sync" route_ood="sync" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Titanium" />
         <efx:device name="Ti180J484" />
@@ -7,6 +7,7 @@
     <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008" unified_flow="false">
         <efx:top_module name="top_soc" />
         <efx:design_file name="source/top_soc.v" version="default" library="default" />
+        <efx:design_file name="source/hw_tcp_sink.v" version="default" library="default" />
         <efx:design_file name="source/design_modules.v" version="default" library="default" />
         <efx:design_file name="source/efx_isg_vision_wrapper.sv" version="default" library="default" />
         <efx:design_file name="source/submodules/eth.f" version="na" library="default" />

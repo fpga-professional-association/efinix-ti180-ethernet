@@ -255,3 +255,41 @@ one flush per burst measured *no* throughput gain (and was less stable), so
 cache maintenance is not the bottleneck - the plateau is lwIP protocol
 processing itself. Meaningful further gains would need TCP offload in
 fabric or a hard-wired checksum/segmentation path, not firmware tuning.
+
+## Hardware TCP sink (this fork) - 885 Mbit/s measured
+
+Following the analysis above, this fork now terminates TCP **in fabric**:
+`source/hw_tcp_sink.v` sits directly on the TSEMAC's 8-bit / 125 MHz AXI
+streams (8 bit x 125 MHz = exactly 1 Gbps) and implements, in RTL:
+
+- ARP responder and ICMP echo for `192.168.1.55`
+- a single-connection TCP endpoint on port 5001: SYN/SYN-ACK/ACK handshake,
+  cumulative ACK generation, FIN teardown, RST/idle-timeout recovery, and
+  adoption of a fresh SYN from any state (auto-recovery from aborted peers)
+- streaming TCP checksum verification on RX (frames failing it never touch
+  connection state); TX checksums use the existing `MacTxLso` offload stage
+  (TCP) plus IP/ICMP checksums computed in the engine - the exact contract
+  lwIP used
+- window scale (x16) advertising a ~1 MB window; payload is discarded at
+  line rate, so the advertised window is always honest
+
+An async gray-pointer FIFO crosses the RX stream from `rgmii_rxc` into
+`io_tseClk`, where the parser, TCP state and TX generator run. The domain
+closes timing at 192.8 MHz Fmax against its 125 MHz clock. The Sapphire
+RISC-V performs only the one-time MAC/PHY register init
+(`software/standalone/tsemac/hwTcpInit`) - **the CPU never touches a
+packet**. The gDMA stays instantiated for the SoC memory map but its
+streams are tied off.
+
+Measured on hardware (PC -> FPGA, gigabit LAN, Windows sender):
+**885 Mbit/s sustained over 30 s** (per-second worst case 860, best 895,
+zero aborts across all runs) = **94 % of the ~941 Mbit/s theoretical TCP
+goodput ceiling**, vs 355-367 Mbit/s for the best lwIP/CPU configuration
+and 298 Mbit/s for Efinix's published figure. Residual gap to 941 is
+sender-side pacing plus rare wire-level FCS errors (26 counted over ~7 GB),
+each of which costs a go-back-N recovery since the hardware endpoint does
+not implement SACK.
+
+To rebuild the software (lwIP iperf) variant instead, revert the
+`hw_tcp_sink` wiring in `source/top_soc.v` (git history has the DMA-stream
+hookup) and run the `lwipIperfServer` firmware.

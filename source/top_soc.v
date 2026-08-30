@@ -1296,23 +1296,64 @@ gDMA u_dma (
     .io_1_descriptorUpdate(),
     .dat1_o_clk           ( io_tseClk                ),
     .dat1_o_reset         ( mac_ext_rst | dma_tx_rst ),
-    .dat1_o_tvalid        ( s_eth_tx_tvalid ),
-    .dat1_o_tready        ( s_eth_tx_tready ),
-    .dat1_o_tdata         ( s_eth_tx_tdata  ),
-    .dat1_o_tkeep         ( s_eth_tx_tkeep  ),
-    .dat1_o_tdest         ( s_eth_tx_tdest  ),
-    .dat1_o_tlast         ( s_eth_tx_tlast  ),
+    .dat1_o_tvalid        ( dma_tx_unused_tvalid ),
+    .dat1_o_tready        ( 1'b1            ),
+    .dat1_o_tdata         ( dma_tx_unused_tdata  ),
+    .dat1_o_tkeep         ( dma_tx_unused_tkeep  ),
+    .dat1_o_tdest         ( dma_tx_unused_tdest  ),
+    .dat1_o_tlast         ( dma_tx_unused_tlast  ),
 
     .io_0_descriptorUpdate( rx_dma_descriptorUpdate  ),
     .dat0_i_clk           ( rgmii_rxc                ),
     .dat0_i_reset         ( mac_ext_rst | dma_rx_rst ),
-    .dat0_i_tvalid        ( m_eth_rx_tvalid          ),
-    .dat0_i_tready        ( m_eth_rx_tready          ),
-    .dat0_i_tdata         ( m_eth_rx_tdata           ),
+    .dat0_i_tvalid        ( 1'b0                     ),
+    .dat0_i_tready        (                          ),
+    .dat0_i_tdata         ( 8'h00                    ),
     .dat0_i_tkeep         ( 1'b1                     ),
     .dat0_i_tdest         ( 4'h0                     ),
-    .dat0_i_tlast         ( m_eth_rx_tlast           )
+    .dat0_i_tlast         ( 1'b0                     )
 );
+
+// ------------------------------------------------------------------
+// Hardware TCP sink: owns the TSEMAC streams. The gDMA above stays
+// instantiated for the SoC memory map but its streams are disconnected
+// (firmware never starts a descriptor). The RISC-V only performs the
+// one-time MAC/PHY register init; every packet is handled in fabric.
+// ------------------------------------------------------------------
+wire        dma_tx_unused_tvalid;
+wire [7:0]  dma_tx_unused_tdata;
+wire [0:0]  dma_tx_unused_tkeep;
+wire [3:0]  dma_tx_unused_tdest;
+wire        dma_tx_unused_tlast;
+
+wire [31:0] hw_tcp_dbg_rx_frames;
+wire [31:0] hw_tcp_dbg_tcp_bytes;
+wire [3:0]  hw_tcp_dbg_state;
+
+hw_tcp_sink #(
+    .LOCAL_MAC  ( 48'h001122334441 ),
+    .LOCAL_IP   ( {8'd192, 8'd168, 8'd1, 8'd55} ),
+    .LOCAL_PORT ( 16'd5001 )
+) u_hw_tcp_sink (
+    .rx_clk    ( rgmii_rxc                ),
+    .rx_rst    ( mac_ext_rst | dma_rx_rst ),
+    .rx_tvalid ( m_eth_rx_tvalid ),
+    .rx_tdata  ( m_eth_rx_tdata  ),
+    .rx_tlast  ( m_eth_rx_tlast  ),
+    .rx_tready ( m_eth_rx_tready ),
+    .tx_clk    ( io_tseClk                ),
+    .tx_rst    ( mac_ext_rst | dma_tx_rst ),
+    .tx_tvalid ( s_eth_tx_tvalid ),
+    .tx_tdata  ( s_eth_tx_tdata  ),
+    .tx_tlast  ( s_eth_tx_tlast  ),
+    .tx_tready ( s_eth_tx_tready ),
+    .dbg_rx_frames ( hw_tcp_dbg_rx_frames ),
+    .dbg_tcp_bytes ( hw_tcp_dbg_tcp_bytes ),
+    .dbg_state     ( hw_tcp_dbg_state     )
+);
+
+assign s_eth_tx_tkeep = 1'b1;
+assign s_eth_tx_tdest = 4'h0;
 
 `endif // ENABLE_ETHERNET
 
