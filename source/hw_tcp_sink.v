@@ -427,6 +427,7 @@ reg  [31:0] t_dip;
 reg  [47:0] t_dmac;
 reg  [15:0] t_dport;
 reg  [7:0]  t_proto;
+reg  [7:0]  echo_pf;                   // BRAM prefetch: byte for NEXT tx_idx
 
 reg clr_synack, clr_finack, clr_ack, clr_arp, clr_echo;
 
@@ -517,6 +518,9 @@ always @(posedge tx_clk) begin
 
         T_STREAM: begin
             if (!tx_tvalid || tx_tready) begin
+                // prefetch the echo byte for the NEXT index so echo_ram
+                // gets a registered (BRAM) read: addr = (tx_idx+1) - 34
+                echo_pf   <= echo_ram[tx_idx - 11'd33];
                 tx_tvalid <= 1'b1;
                 tx_tlast  <= (tx_idx == tx_len - 11'd1);
                 tx_idx    <= tx_idx + 11'd1;
@@ -615,7 +619,7 @@ always @(posedge tx_clk) begin
                             else if (eidx == 11'd1) tx_tdata <= 8'h00;
                             else if (eidx == 11'd2) tx_tdata <= echo_csum[15:8];
                             else if (eidx == 11'd3) tx_tdata <= echo_csum[7:0];
-                            else                    tx_tdata <= echo_ram[eidx];
+                            else                    tx_tdata <= echo_pf;
                         end else begin
                             // TCP header (checksum left 0 for MacTxLso)
                             case (tx_idx)

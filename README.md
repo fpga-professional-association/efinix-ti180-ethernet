@@ -283,12 +283,21 @@ streams are tied off.
 
 Measured on hardware (PC -> FPGA, gigabit LAN, Windows sender):
 **885 Mbit/s sustained over 30 s** (per-second worst case 860, best 895,
-zero aborts across all runs) = **94 % of the ~941 Mbit/s theoretical TCP
-goodput ceiling**, vs 355-367 Mbit/s for the best lwIP/CPU configuration
-and 298 Mbit/s for Efinix's published figure. Residual gap to 941 is
-sender-side pacing plus rare wire-level FCS errors (26 counted over ~7 GB),
-each of which costs a go-back-N recovery since the hardware endpoint does
-not implement SACK.
+zero aborts across all runs; 881 Mbit/s over a separate 20 s run) =
+**94 % of the ~941 Mbit/s theoretical TCP goodput ceiling**, vs
+355-367 Mbit/s for the best lwIP/CPU configuration and 298 Mbit/s for
+Efinix's published figure. Ping answers in ~1 ms with 0 % loss *while*
+the TCP stream runs at full rate. Residual gap to 941 is sender-side
+pacing plus rare wire-level FCS errors (26 counted over ~7 GB), each of
+which costs a go-back-N recovery since the hardware endpoint does not
+implement SACK.
+
+Two synthesis gotchas cost a debug cycle each and are worth recording:
+a `11'd2048` literal silently truncates to 0 (watch for VERI-1208), and
+any asynchronous / mux-fed RAM read maps to a register array on Titanium
+(no distributed RAM - the 16-kbit echo buffer as flops produced a netlist
+that passed STA yet corrupted TCP under load; giving it a registered
+prefetch read restored a clean BRAM and full throughput).
 
 To rebuild the software (lwIP iperf) variant instead, revert the
 `hw_tcp_sink` wiring in `source/top_soc.v` (git history has the DMA-stream
