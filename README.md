@@ -292,6 +292,26 @@ pacing plus rare wire-level FCS errors (26 counted over ~7 GB), each of
 which costs a go-back-N recovery since the hardware endpoint does not
 implement SACK.
 
+### Logic utilization
+
+Post-placement resource usage on the Ti180 (efx_pnr, 2025.1, identical
+seed/settings; both builds carry the full vendor platform - Sapphire SoC,
+LPDDR4x, MIPI/vision pipeline - which accounts for the ~45 % base):
+
+| Resource        | lwIP + DMA design (355-367 Mbit/s) | HW TCP sink design (885 Mbit/s) | delta  |
+|-----------------|-------------------------------------|---------------------------------|--------|
+| XLRs            | 77,583 / 172,800 (44.9 %)           | 78,996 / 172,800 (45.7 %)       | +1,413 |
+| Memory blocks   | 604 / 1,280 (47.2 %)                | 603 / 1,280 (47.1 %)            | -1     |
+| DSP blocks      | 17 / 640 (2.7 %)                    | 17 / 640 (2.7 %)                | 0      |
+
+The `hw_tcp_sink` engine itself is **1,828 XLR cells** (1,353 flip-flops +
+475 LUT/adder cells) **plus 3 memory blocks** (1 for the RX clock-crossing
+FIFO, 2 for the ICMP echo buffer) - about **1.1 % of the chip** for the
+whole ARP/ICMP/TCP endpoint. The net design delta is smaller than the
+engine's own cost because tying off the DMA's stream ports lets synthesis
+trim ~400 XLRs and 4 memory blocks of stream logic elsewhere. So the
+2.5x throughput costs ~0.8 % more fabric.
+
 Two synthesis gotchas cost a debug cycle each and are worth recording:
 a `11'd2048` literal silently truncates to 0 (watch for VERI-1208), and
 any asynchronous / mux-fed RAM read maps to a register array on Titanium
